@@ -1,79 +1,95 @@
 #include <stdio.h>
 
-//Desafio novato, movimentação de peças de xadrez usando loops: While, do-While e For.
+//Desafio mestre, movimentação de peças de xadrez usando loops recursivos
+// coloquei as funções void no final só pra ver se funciona uma vez que main é uma estrutura de inicio conforme ensinam. (funcionou)
+// não sei se é correto assim
 
 int main()
 {
 	
-	// TORRE (movimento de 5 casas para a direita, usando WHILE )
+	// TORRE (movimento de 5 casas para a direita, usando estrutura recursiva )
 	//---------------------------------------------------------------------------------------
-	int i = 1; // Declaração da variavel
+	int posT = 5; // Declaração da variavel (parâmetro, não é posição da torre)
 	
 	printf("MOVIMENTO DA TORRE CINCO CASAS PARA DIREITA\n\n");
+	printf("Sai\n");
+	movTorre(posT);
 	
-	while(i <= 5)
-	{ 
-		
-		printf("Posicao de %d para %d, --> Direita\n", i, i+1);
-		i++;
-	}
 	//---------------------------------------------------------------------------------------
 	// BISPO (movimento diagonal 5 casas para a direita e para cima, usando DO-WHILE )
 	
 	printf("\nMOVIMENTO DO BISBO NA DIAGONAL CINCO CASAS PARA DIREITA E PARA CIMA\n\n");
 	
-	i = 1; // variavel já declarada recebendo valor 1 
+	int posB = 5; // variavel i recebendo valor 1 
 	
-	do
-	{
-		printf("Posicao de %d direita e 1 para cima\n", i);
-		i++;
+	printf("Sai\n");
+	movBispo(posB);
 		
-	}	while(i <= 5);
+	
 	
 	//---------------------------------------------------------------------------------------
 	// RAINHA (movimento horizontal 8 casas para a esquerda, usando FOR )
 	printf("\nMOVIMENTO DA RAINHA NA HORIZONTAL OITO CASAS PARA ESQUERDA\n\n");
+	int i, mov;
 	
-	for(i = 8; i >= 1; i--)
+	for(i = 8; i >= 1; i--) //pressupôe que a rainha esteja na coluna 8
 	{
 		
 		printf("Posicao %d Esquerda\n", i);
 	} 
+		
+	// Movimento com do-while e pergunta ao usuário
+    int movCavalo;
+    
+    printf("\nMOVIMENTO DO CAVALO COM LOOP DO-WHILE\n\n");
 
-	printf("\nMOVIMENTO DO CAVALO PARA BAIXO E A ESQUERDA COM LOOP WHILE\n\n");
+    do
+	{
+        moverBaixo(2);
+        moverEsquerda(1);
+
+        printf("Deseja movimentar o cavalo novamente? 1 - sim | 0 - nao\n");
+        scanf("%d", &movCavalo);
+        printf("\n");
+
+    } while (movCavalo == 1);
+
+    printf("Encerrando movimento do cavalo.\n");
+    return 0;
+		
+}
+void movTorre(int numt)
+{
+	if(numt > 0)
+	{
+		movTorre(numt - 1); // A cada chamada da propria função diminui em 1 o valor do parametro que é = 5, encerrando enquanto for > 0 e < 5
+		printf(" de %d para %d, a Direita\n", numt, numt+1); // a variavel numt + 1 é somente para demonstrar o movimento
+																	//	da torre da posição original para a direita no terminal
+	}
 	
-		int movCavalo = 1; // Nesse momento o cavalo está na primeira linha horizontal superior do tabuleiro
-		
-		while(movCavalo--) //loop externo, decrementando em um quando o loop interno atingir 2
-		{
-									
-			
-			for(int i = 1; i  <= 2; i++) //loop interno, o cavalo está saindo da posição original e descendo duas casas
-			{
-				printf("Baixo\n"); // imprime ´baixo´ duas vezes que são as casas logo abaixo da posição inicial
-				
-			}
-			printf("Esquerda\n"); // imprime esquerda uma vez, movimento à esquerda após descer duas casas.
-			
-			printf("\n");
-		}
-		printf("MOVIMENTO CAVALO PARA BAIXO E A ESQUERDA COM LOOP FOR\n\n");
-			
-		for(int movCavalo = 1; movCavalo < 2; movCavalo--) // Nesse momento o cavalo está na primeira linha horizontal superior do tabuleiro
-		{
-		
-			for(int i = 1; i  <= 2; i++) //loop interno, o cavalo está saindo da posição original e descendo duas casas
-			{
-				printf("Baixo\n"); // imprime ´baixo´ duas vezes que são as casas logo abaixo da posição inicial
-			}
-			
-			printf("Esquerda\n"); // imprime esquerda uma vez, movimento à esquerda após descer duas casas.
-					
-			printf("\n");
-			
-			return 0;
-		}	
+}
+void movBispo(int numB)
+{
+	if(numB > 0)
+	{
+		movBispo(numB - 1); // A cada chamada da propria função diminui em 1 o valor do parametro que é = 5, encerrando enquanto for > 0 e < 5
+		printf(" de %d para %d para cima e a direita\n", numB, numB+1); // a variavel numB + 1 é somente para demonstrar o movimento
+																	//	do bispo da posição original para a direita no terminal
+	}
+	
+}
+void moverBaixo(int mov) //movimento do cavalo com opção
+{
+    if (mov > 0) {
+        printf("Baixo\n");
+        moverBaixo(mov - 1);
+    }
+}
 
-	return 0;	
+void moverEsquerda(int mov) //movimento do cavalo com opção
+{
+    if (mov > 0) {
+        printf("Esquerda\n");
+        moverEsquerda(mov - 1);
+    }
 }
