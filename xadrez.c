@@ -4,6 +4,42 @@
 // coloquei as funções void no final só pra ver se funciona uma vez que main é uma estrutura de inicio conforme ensinam. (funcionou)
 // não sei se é correto assim
 
+void movTorre(int numt)
+{
+	if(numt > 0)
+	{
+		movTorre(numt - 1); // A cada chamada da propria função diminui em 1 o valor do parametro que é = 5, encerrando enquanto for > 0 e < 5
+		printf(" de %d para %d, a Direita\n", numt, numt+1); // a variavel numt + 1 é somente para demonstrar o movimento
+																	//	da torre da posição original para a direita no terminal
+	}
+	
+}
+void movBispo(int numB)
+{
+	if(numB > 0)
+	{
+		movBispo(numB - 1); // A cada chamada da propria função diminui em 1 o valor do parametro que é = 5, encerrando enquanto for > 0 e < 5
+		printf(" de %d para %d para cima e a direita\n", numB, numB+1); // a variavel numB + 1 é somente para demonstrar o movimento
+																	//	do bispo da posição original para a direita no terminal
+	}
+	
+}
+void moverBaixo(int mov) //movimento do cavalo com opção
+{
+    if (mov > 0) {
+        printf("Baixo\n");
+        moverBaixo(mov - 1);
+    }
+}
+
+void moverEsquerda(int mov) //movimento do cavalo com opção
+{
+    if (mov > 0) {
+        printf("Esquerda\n");
+        moverEsquerda(mov - 1);
+    }
+}
+
 int main()
 {
 	
@@ -57,39 +93,4 @@ int main()
     printf("Encerrando movimento do cavalo.\n");
     return 0;
 		
-}
-void movTorre(int numt)
-{
-	if(numt > 0)
-	{
-		movTorre(numt - 1); // A cada chamada da propria função diminui em 1 o valor do parametro que é = 5, encerrando enquanto for > 0 e < 5
-		printf(" de %d para %d, a Direita\n", numt, numt+1); // a variavel numt + 1 é somente para demonstrar o movimento
-																	//	da torre da posição original para a direita no terminal
-	}
-	
-}
-void movBispo(int numB)
-{
-	if(numB > 0)
-	{
-		movBispo(numB - 1); // A cada chamada da propria função diminui em 1 o valor do parametro que é = 5, encerrando enquanto for > 0 e < 5
-		printf(" de %d para %d para cima e a direita\n", numB, numB+1); // a variavel numB + 1 é somente para demonstrar o movimento
-																	//	do bispo da posição original para a direita no terminal
-	}
-	
-}
-void moverBaixo(int mov) //movimento do cavalo com opção
-{
-    if (mov > 0) {
-        printf("Baixo\n");
-        moverBaixo(mov - 1);
-    }
-}
-
-void moverEsquerda(int mov) //movimento do cavalo com opção
-{
-    if (mov > 0) {
-        printf("Esquerda\n");
-        moverEsquerda(mov - 1);
-    }
 }
